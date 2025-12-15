@@ -45,10 +45,6 @@ jobs:
 
       - name: commit
         run: |
-          rm -rf ./.git
-          git config --global init.defaultBranch main
-          git init
-          git remote add origin https://github.com/ahaoboy/mpv-easy-cdn.git
           git config user.name "MPV_EASY_CDN_UPDATER"
           git config user.email "MPV_EASY_CDN_UPDATER@example.com"
           git add .
