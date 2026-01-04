@@ -24,11 +24,11 @@ const FFmpegist = [
     url:
       "https://github.com/mpv-easy/mpv-easy/releases/latest/download/ffmpeg-windows.zip",
   },
-  {
-    name: "ffmpeg-v3-windows",
-    url:
-      "https://github.com/mpv-easy/mpv-easy/releases/latest/download/ffmpeg-v3-windows.zip",
-  },
+  // {
+  //   name: "ffmpeg-v3-windows",
+  //   url:
+  //     "https://github.com/mpv-easy/mpv-easy/releases/latest/download/ffmpeg-v3-windows.zip",
+  // },
 ];
 
 async function updateFFmpeg() {
