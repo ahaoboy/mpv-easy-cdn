@@ -61,6 +61,11 @@ const BaseList = [
       "https://github.com/mpv-easy/mpv-easy/releases/latest/download/mpv-v3-windows.zip",
   },
   {
+    name: "mpv-qjs-windows",
+    url:
+      "https://github.com/mpv-easy/mpv-easy/releases/latest/download/mpv-qjs-windows.zip",
+  },
+  {
     name: "mpv.net",
     url:
       "https://github.com/mpvnet-player/mpv.net/releases/download/v7.1.1.0/mpv.net-v7.1.1.0-portable.zip",
