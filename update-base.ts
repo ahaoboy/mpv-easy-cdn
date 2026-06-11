@@ -70,6 +70,11 @@ const BaseList = [
     url:
       "https://github.com/mpvnet-player/mpv.net/releases/download/v7.1.1.0/mpv.net-v7.1.1.0-portable.zip",
   },
+  {
+    name: "deno",
+    url:
+      "https://github.com/denoland/deno/releases/latest/download/deno-x86_64-pc-windows-msvc.zip",
+  },
 ];
 
 async function updateBase() {
