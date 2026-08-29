@@ -16,7 +16,7 @@
     "@types/node": "26.4.0"
   },
   "dependencies": {
-    "@easy-install/easy-archive": "0.2.7",
+    "@easy-install/easy-archive": "0.2.6",
     "@mpv-easy/mpsm": "0.1.15-alpha.20"
   }
 }
