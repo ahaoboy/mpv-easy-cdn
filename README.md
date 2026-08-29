@@ -8,3 +8,9 @@ Since it is impossible to optimize the size of github .git, Maybe need find a fr
 - https://github.com/mpv-easy/mpsm-scripts
 - https://github.com/ahaoboy/mpv-easy-cdn
 - https://github.com/ahaoboy/mpv-easy-cdn-updater
+
+
+## dev
+```bash
+git clone https://github.com/ahaoboy/mpv-easy-cdn -b dev --single-branch
+```
