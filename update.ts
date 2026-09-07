@@ -7,6 +7,7 @@ import {
   tryFix,
 } from "@mpv-easy/mpsm";
 
+// zip package size in bytes, filled in after a successful pack
 const DATA: Record<string, Script> = JSON.parse(
   await fetch(
     "https://raw.githubusercontent.com/mpv-easy/mpsm-scripts/main/scripts-full.json",
@@ -16,8 +17,15 @@ const DATA: Record<string, Script> = JSON.parse(
 // GITHUB limit 50MB
 const MAX_ZIP_SIZE = 50 * 1024 * 1024;
 
+function formatSize(size: number) {
+  if (size < 1024) return `${size}B`;
+  if (size < 1024 * 1024) return `${(size / 1024).toFixed(2)}KB`;
+  return `${(size / (1024 * 1024)).toFixed(2)}MB`;
+}
+
 for (const name in DATA) {
-  const { download } = DATA[name];
+  const script = DATA[name];
+  const { download } = script;
   const zipName = name + ".zip";
 
   if (![".js", ".lua", ".zip", ".conf"].some((i) => download.endsWith(i))) {
@@ -25,7 +33,7 @@ for (const name in DATA) {
   }
 
   try {
-    const scriptFiles = await getScriptFiles(download, DATA[name]);
+    const scriptFiles = await getScriptFiles(download, script);
     if (!scriptFiles.length) {
       continue;
     }
@@ -45,10 +53,10 @@ for (const name in DATA) {
         scriptFiles.push(file);
       }
     } catch {
-      console.log("not found conf: ", confURL, DATA[name]);
+      console.log("not found conf: ", confURL, script);
     }
 
-    const fixFiles = tryFix(scriptFiles, DATA[name]);
+    const fixFiles = tryFix(scriptFiles, script);
 
     const bin = encode(Fmt.Zip, fixFiles);
     if (!bin) {
@@ -57,11 +65,17 @@ for (const name in DATA) {
     }
 
     if (bin.length > MAX_ZIP_SIZE) {
-      console.log("too big", bin.length, DATA[name]);
+      console.log("too big", bin.length, script);
       continue;
     }
     writeFileSync(zipName, bin);
+
+    // download & pack succeed, write the zip size back to scripts-full.json
+    script.size = bin.length;
+    console.log("ok", zipName, formatSize(script.size));
   } catch (e) {
-    console.log(DATA[name], e);
+    console.log(script, e);
   }
 }
+
+writeFileSync("scripts-full.json", JSON.stringify(DATA));

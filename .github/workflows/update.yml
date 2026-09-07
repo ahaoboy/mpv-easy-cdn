@@ -35,13 +35,11 @@ jobs:
           ls -l
 
       - name: update-zip
+        # update.ts downloads scripts-full.json, writes the zip size of each
+        # successfully packaged script into it, then saves it as scripts-full.json
         run: |
           pnpm run update-zip
           ls -l
-
-      - name: scripts-full.json
-        run: |
-          curl -L -o scripts-full.json https://raw.githubusercontent.com/mpv-easy/mpsm-scripts/main/scripts-full.json
 
       - name: commit
         run: |
