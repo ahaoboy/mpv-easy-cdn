@@ -64,6 +64,8 @@ for (const name in DATA) {
       continue;
     }
 
+    script.size = bin.length;
+
     if (bin.length > MAX_ZIP_SIZE) {
       console.log("too big", bin.length, script);
       continue;
@@ -71,7 +73,6 @@ for (const name in DATA) {
     writeFileSync(zipName, bin);
 
     // download & pack succeed, write the zip size back to scripts-full.json
-    script.size = bin.length;
     console.log("ok", zipName, formatSize(script.size));
   } catch (e) {
     console.log(script, e);
