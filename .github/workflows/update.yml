@@ -20,25 +20,21 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
+
       - name: install
         run: |
-          pnpm i
+          bun i
 
       - name: update base
         run: |
-          pnpm run update-base
+          bun run update-base
           ls -l
 
       - name: update-zip
         # update.ts downloads scripts-full.json, writes the zip size of each
         # successfully packaged script into it, then saves it as scripts-full.json
         run: |
-          pnpm run update-zip
+          bun run update-zip
           ls -l
 
       - name: commit
