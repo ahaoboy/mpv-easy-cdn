@@ -57,6 +57,13 @@ for (const name in DATA) {
     }
 
     const fixFiles = tryFix(scriptFiles, script);
+    const hasLua = fixFiles.find(i => i.path.endsWith("main.lua"));
+    const hasJs = fixFiles.find(i => i.path.endsWith("main.js"));
+    if (hasLua) {
+      script.lang = "lua"
+    } else if (hasJs) {
+      script.lang = "js"
+    }
 
     const bin = encode(Fmt.Zip, fixFiles);
     if (!bin) {
